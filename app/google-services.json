@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "454724375278",
+    "firebase_url": "https://carbon-4afdb.firebaseio.com",
+    "project_id": "carbon-4afdb",
+    "storage_bucket": "carbon-4afdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454724375278:android:f3df7e4da73a61d24259ff",
+        "android_client_info": {
+          "package_name": "com.example.carbon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454724375278-sm4frlhtvp9a7h4u86ti3r52g75rj9gu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carbon",
+            "certificate_hash": "532203659142f9760a59a3158297a53771431d27"
+          }
+        },
+        {
+          "client_id": "454724375278-qsgbp13r533pdi48ru17nm6kohdcdtrp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpX44wznWUVQ4a6HjJDtWsVjacyJaiOUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454724375278-qsgbp13r533pdi48ru17nm6kohdcdtrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
