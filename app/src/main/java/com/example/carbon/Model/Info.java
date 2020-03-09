@@ -1,4 +1,4 @@
-package com.example.carbon;
+package com.example.carbon.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -23,6 +23,10 @@ public class Info {
     @SerializedName("UpdatedOn")
     @Expose
     private String updatedOn;
+
+    @SerializedName("DeviceValue")
+    @Expose
+    private String deviceValue;
 
     public String getId() {
         return id;
@@ -62,5 +66,13 @@ public class Info {
 
     public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public String getDeviceValue() {
+        return deviceValue;
+    }
+
+    public void setDeviceValue(String updatedOn) {
+        this.deviceValue = deviceValue;
     }
 }

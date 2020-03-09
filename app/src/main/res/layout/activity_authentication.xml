@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    tools:context=".AuthenticationActivity">
+    tools:context=".Activities.AuthenticationActivity">
 
     <EditText
         android:id="@+id/EmailEditText"
@@ -46,5 +46,12 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:text="Forgot Password?"/>
+
+    <Button
+        android:id="@+id/FragTestButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ForgotPasswordTextView"
+        android:text="TestFrag"/>
 
 </RelativeLayout>

@@ -1,13 +1,9 @@
-package com.example.carbon;
+package com.example.carbon.HttpRequest;
 
-import org.w3c.dom.Comment;
-
-import java.util.List;
+import com.example.carbon.Model.DeviceResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface JsonPlaceHolderApi {
     /*
