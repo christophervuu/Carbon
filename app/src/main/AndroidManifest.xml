@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.NavigationDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activities.DashboardActivity" />
         <activity android:name=".Activities.ForgotPassword" />
         <activity android:name=".Activities.RegisterUser" />
         <activity android:name=".Activities.MainActivity" />

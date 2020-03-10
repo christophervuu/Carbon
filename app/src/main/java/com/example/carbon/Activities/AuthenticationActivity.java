@@ -41,7 +41,6 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         findViewById(R.id.SignInButton).setOnClickListener(this);
         findViewById(R.id.SignUpTextView).setOnClickListener(this);
         findViewById(R.id.ForgotPasswordTextView).setOnClickListener(this);
-        findViewById(R.id.FragTestButton).setOnClickListener(this);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
 
-                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -127,11 +126,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
             startActivity(intent);
         } else if (i == R.id.SignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        } else if (i == R.id.FragTestButton) {
-            Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
-            startActivity(intent);
         }
-
         /*else if (i == R.id.signOutButton) {
             signOut();
         } else if (i == R.id.verifyEmailButton) {
