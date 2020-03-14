@@ -124,6 +124,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         } else if (i == R.id.ForgotPasswordTextView) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left);
         } else if (i == R.id.SignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         }

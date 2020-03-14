@@ -29,6 +29,8 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_forgot_password);
 
         mEmailField = findViewById(R.id.EditTextSendForgotEmail);
+
+        findViewById(R.id.ButtonSendForgotEmail).setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +58,10 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                 });
+
+        Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
+        finish();
+        startActivity(intent);
     }
 
     private boolean validateForm() {
