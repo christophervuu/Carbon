@@ -19,6 +19,7 @@ import com.example.carbon.Activities.Fragments.ProfileFragment;
 import com.example.carbon.Adapters.DeviceAdapter;
 import com.example.carbon.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,8 +66,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.nav_send:
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+            case R.id.nav_sign_out:
+                signOut();
                 break;
         }
 
@@ -83,4 +84,10 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         }
     }
 
+    public void signOut() {
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(getApplication(), AuthenticationActivity.class);
+        startActivity(intent);
+    }
 }

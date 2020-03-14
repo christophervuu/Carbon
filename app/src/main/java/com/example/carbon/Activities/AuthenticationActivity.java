@@ -127,10 +127,5 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         } else if (i == R.id.SignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         }
-        /*else if (i == R.id.signOutButton) {
-            signOut();
-        } else if (i == R.id.verifyEmailButton) {
-            sendEmailVerification();
-        }*/
     }
 }
