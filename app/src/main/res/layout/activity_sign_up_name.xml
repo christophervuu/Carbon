@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    tools:context=".Activities.SignUpName">
+
+    <TextView
+        android:id="@+id/SignUpNameTextViewText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's your name?"/>
+
+    <EditText
+        android:id="@+id/SignUpNameEditTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameTextViewText1"
+        android:hint="First Name"/>
+
+    <EditText
+        android:id="@+id/SignUpNameEditTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameEditTextFirstName"
+        android:hint="Last Name"/>
+
+    <Button
+        android:id="@+id/SignUpNameButtonSignUpAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameEditTextLastName"
+        android:text="Sign Up &amp; Accept"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameButtonSignUpAccept"
+        android:text="By tapping Sign Up &amp; Accept, you acknowledge that you have read the Privacy Policy and agree to the Terms of Service."/>
+
+</RelativeLayout>

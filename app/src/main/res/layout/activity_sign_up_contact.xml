@@ -5,36 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    tools:context=".Activities.RegisterUser">
+    tools:context=".Activities.SignUpContact">
 
-    <EditText
-
+    <TextView
+        android:id="@+id/SignUpContactTextViewText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What's your name?"/>
+        android:text="What's your email and mobile number?"/>
 
     <EditText
-        android:id="@+id/EmailEditText"
+        android:id="@+id/SignUpContactEditTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpContactTextViewText1"
         android:hint="Email"/>
 
     <EditText
-        android:id="@+id/PasswordEditText"
+        android:id="@+id/SignUpNameEditTextNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/EmailEditText"
-        android:hint="Password"/>
+        android:layout_below="@+id/SignUpContactEditTextEmail"
+        android:hint="Number"/>
 
     <Button
-        android:id="@+id/SignUpButton"
+        android:id="@+id/SignUpContactButtonContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PasswordEditText"
-        android:text="Sign In"/>
-
-
+        android:layout_below="@id/SignUpNameEditTextNumber"
+        android:text="Continue"/>
 
 </RelativeLayout>

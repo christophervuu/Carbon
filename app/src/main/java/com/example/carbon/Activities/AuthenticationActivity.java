@@ -119,12 +119,12 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         int i = v.getId();
         if (i == R.id.SignUpTextView) {
             //createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            Intent intent = new Intent(getApplicationContext(), RegisterUser.class);
+            Intent intent = new Intent(getApplicationContext(), SignUpName.class);
             startActivity(intent);
         } else if (i == R.id.ForgotPasswordTextView) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else if (i == R.id.SignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         }
