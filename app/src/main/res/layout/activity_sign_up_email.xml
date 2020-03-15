@@ -5,33 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SignUpContact">
+    tools:context=".Activities.SignUpEmail">
+
+    <ImageView
+        android:id="@+id/SignUpEmailImageViewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"/>
 
     <TextView
-        android:id="@+id/SignUpContactTextViewText1"
+        android:id="@+id/SignUpEmailTextViewText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What's your email and mobile number?"/>
+        android:layout_below="@+id/SignUpEmailImageViewBack"
+        android:text="Enter your email and password."/>
+
 
     <EditText
-        android:id="@+id/SignUpContactEditTextEmail"
+        android:id="@+id/SignUpEmailEditTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpContactTextViewText1"
+        android:layout_below="@+id/SignUpEmailTextViewText1"
         android:hint="Email"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextNumber"
+        android:id="@+id/SignUpEmailEditTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpContactEditTextEmail"
-        android:hint="Number"/>
+        android:layout_below="@+id/SignUpEmailEditTextEmail"
+        android:hint="Password"/>
 
     <Button
-        android:id="@+id/SignUpContactButtonContinue"
+        android:id="@+id/SignUpEmailButtonContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/SignUpNameEditTextNumber"
+        android:layout_below="@id/SignUpEmailEditTextPassword"
         android:text="Continue"/>
 
 </RelativeLayout>

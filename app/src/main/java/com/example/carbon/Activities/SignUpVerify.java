@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.carbon.R;
 
-public class SignUpContact extends AppCompatActivity {
+public class SignUpVerify extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_contact);
+        setContentView(R.layout.activity_sign_up_verify);
     }
 }
