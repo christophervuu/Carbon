@@ -9,10 +9,18 @@
     android:layout_marginRight="20dp"
     tools:context=".Activities.SignUpName">
 
+
+    <ImageView
+        android:id="@+id/SignUpNameImageViewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"/>
+
     <TextView
         android:id="@+id/SignUpNameTextViewText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameImageViewBack"
         android:text="What's your name?"/>
 
     <EditText

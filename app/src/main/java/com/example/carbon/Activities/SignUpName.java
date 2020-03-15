@@ -23,6 +23,7 @@ public class SignUpName extends AppCompatActivity implements View.OnClickListene
         mLastName = findViewById(R.id.SignUpNameEditTextLastName);
 
         findViewById(R.id.SignUpNameButtonSignUpAccept).setOnClickListener(this);
+        findViewById(R.id.SignUpNameImageViewBack).setOnClickListener(this);
     }
 
     @Override
@@ -30,14 +31,45 @@ public class SignUpName extends AppCompatActivity implements View.OnClickListene
         int i = v.getId();
 
         if (i == R.id.SignUpNameButtonSignUpAccept) {
-            Intent intent = new Intent(getApplicationContext(), SignUpBirthDate.class);
-            intent.putExtra("FirstName", FirstName);
-            intent.putExtra("LastName", LastName);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            continueSignUpBirthDate();
+        } else if (i == R.id.SignUpNameImageViewBack ) {
+            this.finish();
         }
     }
 
+    private void continueSignUpBirthDate() {
+        String FirstName = mFirstName.getText().toString();
+        String LastName = mLastName.getText().toString();
 
+        if (!validateForm(FirstName, LastName)) {
+            return;
+        }
 
+        Intent intent = new Intent(getApplicationContext(), SignUpBirthDate.class);
+        intent.putExtra("FirstName", FirstName);
+        intent.putExtra("LastName", LastName);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+    }
+
+    public boolean validateForm(String FirstName, String LastName) {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(FirstName)) {
+            mFirstName.setError("Required.");
+            valid = false;
+        } else {
+            mFirstName.setError(null);
+        }
+
+        if (TextUtils.isEmpty(LastName)) {
+            mLastName.setError("Required.");
+            valid = false;
+        } else {
+            mLastName.setError(null);
+        }
+
+        return valid;
+    }
 }

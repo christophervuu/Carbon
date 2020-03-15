@@ -53,7 +53,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     }
 
     private void signIn(String email, String password) {
-        Log.d(TAG, "signIn:" + email);
+        Log.d(TAG, "signIx`n:" + email);
         if (!validateForm()) {
             return;
         }
