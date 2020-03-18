@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    tools:context=".Activities.SignUpName">
+    tools:context=".Activities.SignUpAccount">
 
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SignUpNameImageViewBack"
-        android:text="What's your name?"/>
+        android:text="Enter your account information:"/>
 
     <EditText
         android:id="@+id/SignUpNameEditTextFirstName"
@@ -31,17 +31,38 @@
         android:hint="First Name"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextLastName"
+        android:id="@+id/SignUpAccountEditTextLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SignUpNameEditTextFirstName"
         android:hint="Last Name"/>
 
+    <EditText
+        android:id="@+id/SignUpNameEditTextBirthDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpAccountEditTextLastName"
+        android:hint="Date of Birth"/>
+
+    <EditText
+        android:id="@+id/SignUpNameEditTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameEditTextBirthDate"
+        android:hint="Email"/>
+
+    <EditText
+        android:id="@+id/SignUpNameEditTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUpNameEditTextEmail"
+        android:hint="Password"/>
+
     <Button
         android:id="@+id/SignUpNameButtonSignUpAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameEditTextLastName"
+        android:layout_below="@+id/SignUpNameEditTextPassword"
         android:text="Sign Up &amp; Accept"/>
 
     <TextView

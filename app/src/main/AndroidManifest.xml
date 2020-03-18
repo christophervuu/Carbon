@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.SignUpVerify"></activity>
+        <activity android:name=".Activities.SignUpOption"></activity>
+        <activity android:name=".Activities.SignUpVerify" />
         <activity android:name=".Activities.SignUpEmail" />
-        <activity android:name=".Activities.SignUpBirthDate" />
-        <activity android:name=".Activities.SignUpName" />
+        <activity android:name=".Activities.SignUpAccount" />
         <activity
             android:name=".Activities.SplashActivity"
             android:theme="@style/SplashTheme">

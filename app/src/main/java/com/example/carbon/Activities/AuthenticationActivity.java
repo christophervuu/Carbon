@@ -119,7 +119,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         int i = v.getId();
         if (i == R.id.SignUpTextView) {
             //createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            Intent intent = new Intent(getApplicationContext(), SignUpName.class);
+            Intent intent = new Intent(getApplicationContext(), SignUpOption.class);
             startActivity(intent);
         } else if (i == R.id.ForgotPasswordTextView) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
