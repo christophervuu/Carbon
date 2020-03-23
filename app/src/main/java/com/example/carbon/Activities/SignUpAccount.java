@@ -22,30 +22,33 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth mAuth;
 
-    private EditText mFirstName, mLastName, mBirthDate, mPassword;
+    private EditText mFirstName, mLastName, mBirthDate;
+    private EditText mEmail, mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_name);
+        setContentView(R.layout.activity_sign_up_account);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        mFirstName = findViewById(R.id.SignUpNameEditTextFirstName);
+        mFirstName = findViewById(R.id.SignUpAccountEditTextFirstName);
         mLastName = findViewById(R.id.SignUpAccountEditTextLastName);
+        mEmail = findViewById(R.id.SignUpAccountEditTextEmail);
+        mPassword = findViewById(R.id.SignUpAccountEditTextPassword);
 
-        findViewById(R.id.SignUpNameButtonSignUpAccept).setOnClickListener(this);
-        findViewById(R.id.SignUpNameImageViewBack).setOnClickListener(this);
+        findViewById(R.id.SignUpAccountButtonSignUpAccept).setOnClickListener(this);
+        findViewById(R.id.SignUpAccountImageViewBack).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
 
-        if (i == R.id.SignUpNameButtonSignUpAccept) {
+        if (i == R.id.SignUpAccountButtonSignUpAccept) {
             continueSignUpBirthDate();
-        } else if (i == R.id.SignUpNameImageViewBack ) {
+        } else if (i == R.id.SignUpAccountImageViewBack) {
             this.finish();
         }
     }
@@ -53,13 +56,14 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
     private void continueSignUpBirthDate() {
         String FirstName = mFirstName.getText().toString();
         String LastName = mLastName.getText().toString();
+        String Email = mEmail.getText().toString();
+        String Password = mPassword.getText().toString();
 
-        if (!validateForm(FirstName, LastName)) {
+        if (!validateForm(FirstName, LastName, Email, Password)) {
             return;
         }
 
-
-
+        createAccount(Email, Password);
     }
 
     private void createAccount(String email, String password) {
@@ -93,7 +97,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
         // [END create_user_with_email]
     }
 
-    public boolean validateForm(String FirstName, String LastName) {
+    public boolean validateForm(String FirstName, String LastName, String Email, String Password) {
         boolean valid = true;
 
         if (TextUtils.isEmpty(FirstName)) {
@@ -110,18 +114,18 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
             mLastName.setError(null);
         }
 
-        if (TextUtils.isEmpty(LastName)) {
-            mLastName.setError("Required.");
+        if (TextUtils.isEmpty(Email)) {
+            mEmail.setError("Required.");
             valid = false;
         } else {
-            mLastName.setError(null);
+            mEmail.setError(null);
         }
 
-        if (TextUtils.isEmpty(LastName)) {
-            mLastName.setError("Required.");
+        if (TextUtils.isEmpty(Password)) {
+            mPassword.setError("Required.");
             valid = false;
         } else {
-            mLastName.setError(null);
+            mPassword.setError(null);
         }
 
         return valid;

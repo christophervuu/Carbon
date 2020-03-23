@@ -1,20 +1,14 @@
 package com.example.carbon.Adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carbon.Activities.ForgotPassword;
-import com.example.carbon.Activities.RegisterUser;
 import com.example.carbon.Model.Info;
 import com.example.carbon.R;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 

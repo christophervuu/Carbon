@@ -26,8 +26,6 @@ public class SignUpOption extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(getApplicationContext(), SignUpAccount.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (i == R.id.SignUpBirthDateImageViewBack) {
-            this.finish();
         }
     }
 }

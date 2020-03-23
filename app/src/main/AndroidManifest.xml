@@ -12,8 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.SignUpOption"></activity>
-        <activity android:name=".Activities.SignUpVerify" />
-        <activity android:name=".Activities.SignUpEmail" />
         <activity android:name=".Activities.SignUpAccount" />
         <activity
             android:name=".Activities.SplashActivity"
@@ -28,7 +26,6 @@
             android:name=".Activities.NavigationDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.ForgotPassword" />
-        <activity android:name=".Activities.RegisterUser" />
         <activity android:name=".Activities.MainActivity" />
         <activity android:name=".Activities.AuthenticationActivity" />
     </application>

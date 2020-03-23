@@ -11,64 +11,64 @@
 
 
     <ImageView
-        android:id="@+id/SignUpNameImageViewBack"
+        android:id="@+id/SignUpAccountImageViewBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"/>
 
     <TextView
-        android:id="@+id/SignUpNameTextViewText1"
+        android:id="@+id/SignUpAccountTextViewText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameImageViewBack"
+        android:layout_below="@+id/SignUpAccountImageViewBack"
         android:text="Enter your account information:"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextFirstName"
+        android:id="@+id/SignUpAccountEditTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameTextViewText1"
+        android:layout_below="@+id/SignUpAccountTextViewText1"
         android:hint="First Name"/>
 
     <EditText
         android:id="@+id/SignUpAccountEditTextLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameEditTextFirstName"
+        android:layout_below="@+id/SignUpAccountEditTextFirstName"
         android:hint="Last Name"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextBirthDate"
+        android:id="@+id/SignUpAccountEditTextBirthDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SignUpAccountEditTextLastName"
         android:hint="Date of Birth"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextEmail"
+        android:id="@+id/SignUpAccountEditTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameEditTextBirthDate"
+        android:layout_below="@+id/SignUpAccountEditTextBirthDate"
         android:hint="Email"/>
 
     <EditText
-        android:id="@+id/SignUpNameEditTextPassword"
+        android:id="@+id/SignUpAccountEditTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameEditTextEmail"
+        android:layout_below="@+id/SignUpAccountEditTextEmail"
         android:hint="Password"/>
 
     <Button
-        android:id="@+id/SignUpNameButtonSignUpAccept"
+        android:id="@+id/SignUpAccountButtonSignUpAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameEditTextPassword"
+        android:layout_below="@+id/SignUpAccountEditTextPassword"
         android:text="Sign Up &amp; Accept"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignUpNameButtonSignUpAccept"
+        android:layout_below="@+id/SignUpAccountButtonSignUpAccept"
         android:text="By tapping Sign Up &amp; Accept, you acknowledge that you have read the Privacy Policy and agree to the Terms of Service."/>
 
 </RelativeLayout>
