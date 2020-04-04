@@ -10,12 +10,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.carbon.HttpRequest.UserApi;
+import com.example.carbon.Model.UserProfileTest;
+import com.example.carbon.Model.UserProfilev2;
 import com.example.carbon.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpAccount extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "EmailPassword";
@@ -24,6 +33,8 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
     private EditText mFirstName, mLastName, mBirthDate;
     private EditText mEmail, mPassword;
+
+    UserApi userApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,13 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.SignUpAccountButtonSignUpAccept).setOnClickListener(this);
         findViewById(R.id.SignUpAccountImageViewBack).setOnClickListener(this);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Viaanix/app/user/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        userApi = retrofit.create(UserApi.class);
     }
 
     @Override
@@ -81,6 +99,29 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
+
+                            UserProfileTest userProfileTest = new UserProfileTest("99", null, "firstname", "lastname", "2000-12-31", "email", "phone");
+                            Call<UserProfileTest> call = userApi.createUser(userProfileTest);
+
+                            call.enqueue(new Callback<UserProfileTest>() {
+                                @Override
+                                public void onResponse(Call<UserProfileTest> call, Response<UserProfileTest> response) {
+                                    Log.d(TAG, "message = " + response.message());
+
+                                    if (!response.isSuccessful()) {
+                                        Log.d(TAG, "-----isSuccess----");
+                                    } else {
+                                        Log.d(TAG, "-----isFalse----");
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<UserProfileTest> call, Throwable t) {
+                                    Log.d(TAG, "----onFailure------");
+                                    Log.e(TAG, t.getMessage());
+                                    Log.d(TAG, "----onFailure------");
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

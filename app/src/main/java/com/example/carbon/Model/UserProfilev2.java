@@ -3,7 +3,7 @@ package com.example.carbon.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserProfile {
+public class UserProfilev2 {
     @SerializedName("userID")
     @Expose
     private String UserId;
@@ -60,7 +60,22 @@ public class UserProfile {
     @Expose
     private String UpdatedOn;
 
-
+    public UserProfilev2(String userId, String accountID, String firstName, String lastName, String birthDate, String email, String phone, int canEmail, int canText, int canCall, int isMaster, int firebaseID, String createdOn, String updatedOn) {
+        UserId = userId;
+        AccountID = accountID;
+        FirstName = firstName;
+        LastName = lastName;
+        BirthDate = birthDate;
+        Email = email;
+        Phone = phone;
+        CanEmail = canEmail;
+        CanText = canText;
+        CanCall = canCall;
+        IsMaster = isMaster;
+        FirebaseID = firebaseID;
+        CreatedOn = createdOn;
+        UpdatedOn = updatedOn;
+    }
 
     public String getUserId() {
         return UserId;
