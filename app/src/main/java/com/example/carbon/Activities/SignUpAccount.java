@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,13 +52,6 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.SignUpAccountButtonSignUpAccept).setOnClickListener(this);
         findViewById(R.id.SignUpAccountImageViewBack).setOnClickListener(this);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Viaanix/app/user/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        userApi = retrofit.create(UserApi.class);
     }
 
     @Override
@@ -100,18 +94,25 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
 
-                            UserProfileTest userProfileTest = new UserProfileTest("99", null, "firstname", "lastname", "2000-12-31", "email", "phone");
+                            Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Viaanix/app/user/")
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            userApi = retrofit.create(UserApi.class);
+
+                            UserProfileTest userProfileTest = new UserProfileTest("1234", null, "firstname", "lastname", "2000-12-31", "email", "phone");
                             Call<UserProfileTest> call = userApi.createUser(userProfileTest);
 
                             call.enqueue(new Callback<UserProfileTest>() {
                                 @Override
                                 public void onResponse(Call<UserProfileTest> call, Response<UserProfileTest> response) {
-                                    Log.d(TAG, "message = " + response.message());
+                                    Log.w("2.0 getFeed > Full json res wrapped in gson => ", new Gson().toJson(response));
 
                                     if (!response.isSuccessful()) {
-                                        Log.d(TAG, "-----isSuccess----");
-                                    } else {
                                         Log.d(TAG, "-----isFalse----");
+                                    } else {
+                                        Log.d(TAG, "-----isSuccess----");
                                     }
                                 }
 
