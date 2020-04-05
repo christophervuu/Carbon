@@ -4,32 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UserProfileTest {
-    @SerializedName("UserID")
-    @Expose
     private String UserId;
-
-    @SerializedName("AccountID")
-    @Expose
     private String AccountID;
-
-    @SerializedName("FirstName")
-    @Expose
     private String FirstName;
-
-    @SerializedName("LastName")
-    @Expose
     private String LastName;
-
-    @SerializedName("BirthDate")
-    @Expose
     private String BirthDate;
-
-    @SerializedName("Email")
-    @Expose
     private String Email;
-
-    @SerializedName("Phone")
-    @Expose
     private String Phone;
 
     public UserProfileTest(String userId, String accountID, String firstName, String lastName, String birthDate, String email, String phone) {

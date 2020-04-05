@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -94,9 +96,15 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
 
+                            OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+                            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+                            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                            okHttpClientBuilder.addInterceptor(logging);
+
                             Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Viaanix/app/user/")
+                                    .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Prod/app/user/")
                                     .addConverterFactory(GsonConverterFactory.create())
+                                    .client(okHttpClientBuilder.build())
                                     .build();
 
                             userApi = retrofit.create(UserApi.class);
