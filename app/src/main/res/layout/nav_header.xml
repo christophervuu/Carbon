@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="100dp"
     android:background="@color/colorAccent"
-    android:gravity="bottom"
-    android:padding="16dp"
+    android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     >
 
-    <ImageView
+    <TextView
+        android:id="@+id/HeaderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:text="FirstName LastName" />
 
     <TextView
+        android:id="@+id/HeaderViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="Coding in Flow"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:layout_below="@+id/HeaderName"
+        android:text="View Profile"/>
 
     <TextView
+        android:id="@+id/HeaderDivider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="info@coding"/>
+        android:layout_below="@+id/HeaderName"
+        android:layout_toEndOf="@+id/HeaderViewProfile"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="•"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/HeaderSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HeaderName"
+        android:layout_toEndOf="@+id/HeaderDivider"
+        android:text="Settings"/>
+
+</RelativeLayout>
