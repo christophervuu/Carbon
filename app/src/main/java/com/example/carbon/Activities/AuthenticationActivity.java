@@ -1,8 +1,5 @@
 package com.example.carbon.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,7 +8,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.carbon.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +26,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     private static final String TAG = "EmailPassword";
 
     private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
     private EditText mEmailField;
     private EditText mPasswordField;
@@ -41,6 +45,12 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         findViewById(R.id.SignInButton).setOnClickListener(this);
         findViewById(R.id.SignUpTextView).setOnClickListener(this);
         findViewById(R.id.ForgotPasswordTextView).setOnClickListener(this);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
