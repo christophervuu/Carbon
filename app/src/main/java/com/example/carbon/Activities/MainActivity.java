@@ -1,19 +1,13 @@
 package com.example.carbon.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.carbon.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,21 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void retreieveTokens() {
-        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mUser.getIdToken(true)
-                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                    public void onComplete(@NonNull Task<GetTokenResult> task) {
-                        if (task.isSuccessful()) {
-                            String idToken = task.getResult().getToken();
-                            // Send token to your backend via HTTPS
-                            // ...
-                            mTest.setText(idToken);
-                            Log.d(TAG, idToken);
-                        } else {
-                            // Handle error -> task.getException();
-                        }
-                    }
-                });
+        mTest.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
     @Override

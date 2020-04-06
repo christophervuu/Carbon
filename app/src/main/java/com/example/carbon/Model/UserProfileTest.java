@@ -1,8 +1,5 @@
 package com.example.carbon.Model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class UserProfileTest {
     private String UserId;
     private String AccountID;
@@ -11,8 +8,9 @@ public class UserProfileTest {
     private String BirthDate;
     private String Email;
     private String Phone;
+    private String FirebaseId;
 
-    public UserProfileTest(String userId, String accountID, String firstName, String lastName, String birthDate, String email, String phone) {
+    public UserProfileTest(String userId, String accountID, String firstName, String lastName, String birthDate, String email, String phone, String firebaseId) {
         UserId = userId;
         AccountID = accountID;
         FirstName = firstName;
@@ -20,6 +18,7 @@ public class UserProfileTest {
         BirthDate = birthDate;
         Email = email;
         Phone = phone;
+        FirebaseId = firebaseId;
     }
 
     public String getUserId() {
@@ -77,4 +76,8 @@ public class UserProfileTest {
     public void setPhone(String phone) {
         Phone = phone;
     }
+
+    public String getFirebaseId() { return FirebaseId;}
+
+    public void setFirebaseId(String firebaseId) { FirebaseId = firebaseId;}
 }

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carbon.Activities.ForgotPassword;
+import com.example.carbon.Activities.MainActivity;
 import com.example.carbon.Adapters.DeviceAdapter;
 import com.example.carbon.HttpRequest.JsonPlaceHolderApi;
 import com.example.carbon.Model.DeviceResponse;
@@ -78,7 +78,7 @@ public class DashboardFragment extends Fragment implements DeviceAdapter.OnNoteL
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), ForgotPassword.class);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
     }
 }

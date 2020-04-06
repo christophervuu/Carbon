@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carbon.Activities.Fragments.DashboardFragment;
 import com.example.carbon.HttpRequest.UserApi;
 import com.example.carbon.Model.UserProfileTest;
 import com.example.carbon.R;
@@ -99,9 +98,9 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
 
-                            CreateUserInDatabase(firstName, lastName, email, password);
+                            CreateUserInDatabase(firstName, lastName, email, password, user);
 
-                            Intent intent = new Intent(getApplicationContext(), DashboardFragment.class);
+                            Intent intent = new Intent(getApplicationContext(), NavigationDrawerActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -119,7 +118,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
         // [END create_user_with_email]
     }
 
-    public void CreateUserInDatabase(String firstName, String lastName, String email, String password) {
+    public void CreateUserInDatabase(String firstName, String lastName, String email, String password, FirebaseUser user) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -133,7 +132,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         userApi = retrofit.create(UserApi.class);
 
-        UserProfileTest userProfileTest = new UserProfileTest(UUID.randomUUID().toString(), null, firstName, lastName, "2000-12-31", email, "phone");
+        UserProfileTest userProfileTest = new UserProfileTest(UUID.randomUUID().toString(), null, firstName, lastName, "2000-12-31", email, "pzhone", user.getUid());
         Call<UserProfileTest> call = userApi.createUser(userProfileTest);
 
         call.enqueue(new Callback<UserProfileTest>() {

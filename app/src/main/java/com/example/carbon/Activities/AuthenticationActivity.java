@@ -6,19 +6,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carbon.Activities.Fragments.DashboardFragment;
 import com.example.carbon.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -177,7 +174,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         int i = v.getId();
         if (i == R.id.SignUpTextView) {
             //createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            Intent intent = new Intent(getApplicationContext(), SignUpOption.class);
+            Intent intent = new Intent(getApplicationContext(), SignUpAccount.class);
             startActivity(intent);
         } else if (i == R.id.ForgotPasswordTextView) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);

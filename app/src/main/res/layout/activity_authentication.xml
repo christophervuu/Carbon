@@ -86,6 +86,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/SignUpTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sign_in_button_container"
