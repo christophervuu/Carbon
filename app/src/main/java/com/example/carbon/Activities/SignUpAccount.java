@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carbon.HttpRequest.UserApi;
-import com.example.carbon.Model.UserProfileTest;
+import com.example.carbon.Model.ModelCreateUserAccount;
 import com.example.carbon.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,8 +20,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
-
-import java.util.UUID;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -132,12 +130,12 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         userApi = retrofit.create(UserApi.class);
 
-        UserProfileTest userProfileTest = new UserProfileTest(UUID.randomUUID().toString(), null, firstName, lastName, "2000-12-31", email, "pzhone", user.getUid());
-        Call<UserProfileTest> call = userApi.createUser(userProfileTest);
+        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(firstName, lastName, "2000-12-31", email, user.getUid());
+        Call<ModelCreateUserAccount> call = userApi.createUser(modelCreateUserAccount);
 
-        call.enqueue(new Callback<UserProfileTest>() {
+        call.enqueue(new Callback<ModelCreateUserAccount>() {
             @Override
-            public void onResponse(Call<UserProfileTest> call, Response<UserProfileTest> response) {
+            public void onResponse(Call<ModelCreateUserAccount> call, Response<ModelCreateUserAccount> response) {
                 Log.w("2.0 getFeed > Full json res wrapped in gson => ", new Gson().toJson(response));
 
                 if (!response.isSuccessful()) {
@@ -148,7 +146,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<UserProfileTest> call, Throwable t) {
+            public void onFailure(Call<ModelCreateUserAccount> call, Throwable t) {
                 Log.d(TAG, "----onFailure------");
                 Log.e(TAG, t.getMessage());
                 Log.d(TAG, "----onFailure------");
