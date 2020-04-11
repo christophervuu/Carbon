@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carbon.HttpRequest.UserApi;
+import com.example.carbon.Model.ModelCreateUserAccount;
 import com.example.carbon.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,50 +26,91 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.gson.Gson;
+
+import java.time.Instant;
+import java.util.UUID;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthenticationActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // TAGS
     private static final String TAG = "EmailPassword";
+    private static final String GOOGLETAG = "Google Activity";
     private static final int RC_SIGN_IN = 9001;
 
+    // Declare Firebase and Google
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
 
-    private EditText mEmailField;
-    private EditText mPasswordField;
+    // Declare EditText variables
+    private EditText mEmailField, mPasswordField;
+
+    //Declare UserApi
+    UserApi userApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Views
         mEmailField = findViewById(R.id.EmailEditText);
         mPasswordField = findViewById(R.id.PasswordEditText);
 
+        // Button listeners
         findViewById(R.id.SignInButton).setOnClickListener(this);
         findViewById(R.id.SignUpTextView).setOnClickListener(this);
         findViewById(R.id.ForgotPasswordTextView).setOnClickListener(this);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
+        // Check if the user is already signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        // Needs to be implemented
         // updateUI(currentUser);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                FirebaseAuthWithGoogle(account);
+
+            } catch (ApiException e) {
+                Log.w(GOOGLETAG, "Google sign in failed", e);
+                //updateUI(null);
+            }
+        }
+    }
+
+
+    // Authenticate using email and password
     private void signIn(String email, String password) {
         Log.d(TAG, "signIx`n:" + email);
         if (!validateForm()) {
@@ -102,13 +145,15 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
                             //mStatusTextView.setText(R.string.auth_failed);
                         }
                         //hideProgressBar();
-                        // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
     }
 
+    // Authenticate with Google
     private void FirebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(GOOGLETAG, "FirebaseAuthWithGoogle:" + acct.getId());
+
+        //showProgressBar();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -116,11 +161,24 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            //updateUI(user);
 
+                            GoogleCheckEmailExist(user, user.getEmail());
+
+                            Intent intent = new Intent(AuthenticationActivity.this, NavigationDrawerActivity.class);
+                            startActivity(intent);
                         } else {
-
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(AuthenticationActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
                         }
+
+                        //showProgressBar();
                     }
                 });
     }
@@ -130,21 +188,54 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private void GoogleCheckEmailExist(final FirebaseUser user, String email) {
+        mAuth.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        if (!task.isSuccessful()) {
+                            CreateUserInDatabase(user);
+                        }
+                    }
+                });
+    }
 
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                FirebaseAuthWithGoogle(account);
+    private void CreateUserInDatabase(FirebaseUser user) {
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okHttpClientBuilder.addInterceptor(logging);
 
-            } catch (ApiException e) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Prod/app/user/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClientBuilder.build())
+                .build();
 
+        userApi = retrofit.create(UserApi.class);
+
+        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(UUID.randomUUID().toString(), UUID.randomUUID().toString(), user.getDisplayName(), user.getDisplayName(), "2000-12-31", user.getEmail(), null, false, false, false, true, user.getUid(), Instant.now().toString(), Instant.now().toString());
+        Call<ModelCreateUserAccount> call = userApi.createUser(modelCreateUserAccount);
+
+        call.enqueue(new Callback<ModelCreateUserAccount>() {
+            @Override
+            public void onResponse(Call<ModelCreateUserAccount> call, Response<ModelCreateUserAccount> response) {
+                Log.w("2.0 getFeed > Full json res wrapped in gson => ", new Gson().toJson(response));
+
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "-----isFalse----");
+                } else {
+                    Log.d(TAG, "-----isSuccess----");
+                }
             }
-        }
 
+            @Override
+            public void onFailure(Call<ModelCreateUserAccount> call, Throwable t) {
+                Log.d(TAG, "----onFailure------");
+                Log.e(TAG, t.getMessage());
+                Log.d(TAG, "----onFailure------");
+            }
+        });
     }
 
     private boolean validateForm() {
@@ -173,7 +264,6 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.SignUpTextView) {
-            //createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
             Intent intent = new Intent(getApplicationContext(), SignUpAccount.class);
             startActivity(intent);
         } else if (i == R.id.ForgotPasswordTextView) {

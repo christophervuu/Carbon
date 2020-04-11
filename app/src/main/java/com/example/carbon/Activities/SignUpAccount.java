@@ -25,7 +25,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
+import java.time.Instant;
 import java.util.Calendar;
+import java.util.UUID;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -167,7 +169,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         userApi = retrofit.create(UserApi.class);
 
-        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(firstName.toUpperCase(), lastName.toUpperCase(), "2000-12-31", email, user.getUid());
+        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(UUID.randomUUID().toString(), UUID.randomUUID().toString(), firstName, lastName, "2000-12-31", email, null, false, false, false, true, user.getUid(), Instant.now().toString(), Instant.now().toString());
         Call<ModelCreateUserAccount> call = userApi.createUser(modelCreateUserAccount);
 
         call.enqueue(new Callback<ModelCreateUserAccount>() {

@@ -1,8 +1,5 @@
 package com.example.carbon.Model;
 
-import java.time.Instant;
-import java.util.UUID;
-
 public class ModelCreateUserAccount {
     private String UserId;
     private String AccountId;
@@ -19,21 +16,21 @@ public class ModelCreateUserAccount {
     private String CreatedOn;
     private String UpdatedOn;
 
-    public ModelCreateUserAccount(String firstName, String lastName, String birthDate, String email, String firebaseId) {
-        UserId = UUID.randomUUID().toString();
-        AccountId = UUID.randomUUID().toString();
+    public ModelCreateUserAccount(String userId, String accountId, String firstName, String lastName, String birthDate, String email, String phone, Boolean canEmail, Boolean canText, Boolean canCall, Boolean isMaster, String firebaseId, String createdOn, String updatedOn) {
+        UserId = userId;
+        AccountId = accountId;
         FirstName = firstName;
         LastName = lastName;
         BirthDate = birthDate;
         Email = email;
-        Phone = null;
-        CanEmail = false;
-        CanText = false;
-        CanCall = false;
-        IsMaster = true;
+        Phone = phone;
+        CanEmail = canEmail;
+        CanText = canText;
+        CanCall = canCall;
+        IsMaster = isMaster;
         FirebaseId = firebaseId;
-        CreatedOn = Instant.now().toString();
-        UpdatedOn = Instant.now().toString();
+        CreatedOn = createdOn;
+        UpdatedOn = updatedOn;
     }
 
     public String getUserId() {
