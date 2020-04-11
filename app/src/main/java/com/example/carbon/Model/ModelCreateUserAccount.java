@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class ModelCreateUserAccount {
     private String UserId;
-    private String AccountID;
+    private String AccountId;
     private String FirstName;
     private String LastName;
     private String BirthDate;
@@ -21,7 +21,7 @@ public class ModelCreateUserAccount {
 
     public ModelCreateUserAccount(String firstName, String lastName, String birthDate, String email, String firebaseId) {
         UserId = UUID.randomUUID().toString();
-        AccountID = null;
+        AccountId = UUID.randomUUID().toString();
         FirstName = firstName;
         LastName = lastName;
         BirthDate = birthDate;
@@ -30,7 +30,7 @@ public class ModelCreateUserAccount {
         CanEmail = false;
         CanText = false;
         CanCall = false;
-        IsMaster = false;
+        IsMaster = true;
         FirebaseId = firebaseId;
         CreatedOn = Instant.now().toString();
         UpdatedOn = Instant.now().toString();
@@ -44,12 +44,12 @@ public class ModelCreateUserAccount {
         UserId = userId;
     }
 
-    public String getAccountID() {
-        return AccountID;
+    public String getAccountId() {
+        return AccountId;
     }
 
-    public void setAccountID(String accountID) {
-        AccountID = accountID;
+    public void setAccountId(String accountID) {
+        AccountId = accountID;
     }
 
     public String getFirstName() {

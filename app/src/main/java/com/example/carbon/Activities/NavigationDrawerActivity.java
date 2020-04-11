@@ -14,7 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.carbon.Activities.Fragments.ChatFragment;
 import com.example.carbon.Activities.Fragments.DashboardFragment;
-import com.example.carbon.Activities.Fragments.ProfileFragment;
+import com.example.carbon.Activities.Fragments.AccountFragment;
 import com.example.carbon.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,8 +60,8 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatFragment()).commit();
                 break;
 
-            case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+            case R.id.nav_account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
 
             case R.id.nav_share:

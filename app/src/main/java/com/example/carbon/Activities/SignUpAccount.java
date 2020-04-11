@@ -1,10 +1,14 @@
 package com.example.carbon.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
+
+import java.util.Calendar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -37,6 +43,8 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
     private EditText mFirstName, mLastName, mBirthDate;
     private EditText mEmail, mPassword;
 
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
     UserApi userApi;
 
     @Override
@@ -51,6 +59,35 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
         mLastName = findViewById(R.id.SignUpAccountEditTextLastName);
         mEmail = findViewById(R.id.SignUpAccountEditTextEmail);
         mPassword = findViewById(R.id.SignUpAccountEditTextPassword);
+
+        mBirthDate = findViewById(R.id.SignUpAccountEditTextBirthDate);
+
+        mBirthDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        SignUpAccount.this,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+
+                String date = month + "/" + dayOfMonth + "/" + year;
+                mBirthDate.setText(date);
+            }
+        };
 
         findViewById(R.id.SignUpAccountButtonSignUpAccept).setOnClickListener(this);
         findViewById(R.id.SignUpAccountImageViewBack).setOnClickListener(this);
@@ -130,7 +167,7 @@ public class SignUpAccount extends AppCompatActivity implements View.OnClickList
 
         userApi = retrofit.create(UserApi.class);
 
-        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(firstName, lastName, "2000-12-31", email, user.getUid());
+        ModelCreateUserAccount modelCreateUserAccount = new ModelCreateUserAccount(firstName.toUpperCase(), lastName.toUpperCase(), "2000-12-31", email, user.getUid());
         Call<ModelCreateUserAccount> call = userApi.createUser(modelCreateUserAccount);
 
         call.enqueue(new Callback<ModelCreateUserAccount>() {
