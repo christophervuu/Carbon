@@ -1,11 +1,15 @@
 package com.example.carbon.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -57,6 +61,9 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     //Declare UserApi
     UserApi userApi;
 
+    private ProgressBar mProgressBar;
+    private RelativeLayout mProgressBarContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,11 +83,15 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         mEmailField = findViewById(R.id.EmailEditText);
         mPasswordField = findViewById(R.id.PasswordEditText);
 
+        setProgressBar(R.id.progressBar);
+        mProgressBarContainer = findViewById(R.id.ProgressBarContainer);
+
         // Button listeners
         findViewById(R.id.SignInButton).setOnClickListener(this);
         findViewById(R.id.SignUpTextView).setOnClickListener(this);
         findViewById(R.id.ForgotPasswordTextView).setOnClickListener(this);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+
     }
 
     @Override
@@ -117,7 +128,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
             return;
         }
 
-        //showProgressBar();
+        showProgressBar();
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -144,7 +155,7 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
                         if (!task.isSuccessful()) {
                             //mStatusTextView.setText(R.string.auth_failed);
                         }
-                        //hideProgressBar();
+                        hideProgressBar();
                     }
                 });
     }
@@ -275,5 +286,36 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         } else if (i == R.id.sign_in_button) {
             GoogleSignIn();
         }
+    }
+
+    public void setProgressBar(int resId) {
+        mProgressBar = findViewById(resId);
+    }
+
+    public void showProgressBar() {
+        if (mProgressBar != null) {
+            mProgressBar.setVisibility(View.VISIBLE);
+            mProgressBarContainer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideProgressBar() {
+        if (mProgressBar != null) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            mProgressBarContainer.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void hideKeyboard(View view) {
+        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressBar();
     }
 }

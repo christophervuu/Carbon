@@ -3,6 +3,7 @@ package com.example.carbon.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,8 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         TextView mDeviceId, mDeviceType, mDeviceValue;
         OnNoteListener onNoteListener;
 
+        ImageView mImage;
+
         DeviceViewHolder(View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
@@ -53,6 +56,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
             mDeviceType = itemView.findViewById(R.id.TextViewDeviceType);
             mDeviceValue = itemView.findViewById(R.id.TextViewUpdatedOn);
             //cardView = itemView.findViewById(R.id.CardViewRowDevice);
+            mImage = itemView.findViewById(R.id.ImageViewImage);
             this.onNoteListener = onNoteListener;
 
             itemView.setOnClickListener(this);
