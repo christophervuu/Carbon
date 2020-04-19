@@ -2,18 +2,17 @@ package com.example.carbon.HttpRequest;
 
 import com.example.carbon.Model.ModelAddUser;
 import com.example.carbon.Model.ModelCreateUserAccount;
-import com.example.carbon.Model.ModelGetAccountUsers;
+import com.example.carbon.Model.ModelResponseUser;
+import com.example.carbon.Model.ModelUpdateUser;
+import com.example.carbon.Model.UserList;
+import com.example.carbon.Model.UserRecords;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface UserApi {
-
-    @POST("getaccountusers")
-    Call<ModelGetAccountUsers> getAccountUsers(@Body ModelGetAccountUsers modelGetAccountUsers);
 
     @POST("create")
     Call<ModelCreateUserAccount> createUser(@Body ModelCreateUserAccount modelCreateUserAccount);
@@ -21,4 +20,12 @@ public interface UserApi {
     @POST("add")
     Call<ModelAddUser> addUser(@Body ModelAddUser modelAddUser);
 
+    @POST("update")
+    Call<ModelUpdateUser> updateUser(@Body ModelUpdateUser modelUpdateUser);
+
+    @POST("profile")
+    Call<ModelResponseUser> getProfile(@Body ModelResponseUser modelResponseUser);
+
+    @POST("getaccountusers")
+    Call<UserRecords> getaccountusers(@Body UserRecords userRecords);
 }

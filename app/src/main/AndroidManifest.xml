@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AddUserEmailActivity"></activity>
+        <activity android:name=".Activities.AddUserActivity"></activity>
         <activity android:name=".Activities.SignUpAccount" />
         <activity
             android:name=".Activities.SplashActivity"
@@ -26,7 +26,7 @@
             android:name=".Activities.NavigationDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.ForgotPassword" />
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.CarbonMonoxideActivity" />
         <activity android:name=".Activities.AuthenticationActivity" />
 
         <service

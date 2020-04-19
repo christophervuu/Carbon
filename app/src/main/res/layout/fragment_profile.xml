@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/FragmentProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:text=""/>
+
+    <RelativeLayout
+        android:id="@+id/FragmentProfileRelativeLayoutOne"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/FragmentProfileName"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/FragmentProfileTextViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:textSize="15dp"
+            android:text="Email: "/>
+
+        <EditText
+            android:id="@+id/FragmentProfileEditTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/FragmentProfileTextViewEmail"
+            android:hint=""/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/FragmentProfileRelativeLayoutTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentProfileRelativeLayoutOne">
+
+        <TextView
+            android:id="@+id/FragmentProfileTextViewPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:textSize="15dp"
+            android:text="Phone: "/>
+
+        <EditText
+            android:id="@+id/FragmentProfileEditTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/FragmentProfileTextViewPhone"
+            android:hint="N/A"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/FragmentProfileRelativeLayoutThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentProfileRelativeLayoutTwo">
+
+        <TextView
+            android:id="@+id/FragmentProfileTextViewChangeFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:textSize="15dp"
+            android:text="First name:"/>
+
+        <EditText
+            android:id="@+id/FragmentProfileEditTextChangeFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/FragmentProfileTextViewChangeFirstName"
+            android:hint=""/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/FragmentProfileRelativeLayoutFour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentProfileRelativeLayoutThree">
+
+        <TextView
+            android:id="@+id/FragmentProfileTextViewChangeLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:textSize="15dp"
+            android:text="Last name:"/>
+
+        <EditText
+            android:id="@+id/FragmentProfileEditTextChangeLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/FragmentProfileTextViewChangeLastName"
+            android:hint=""/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/FragmentProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update profile"
+        android:layout_below="@+id/FragmentProfileRelativeLayoutThree"
+        android:layout_marginTop="80dp"/>
+
+
+</RelativeLayout>

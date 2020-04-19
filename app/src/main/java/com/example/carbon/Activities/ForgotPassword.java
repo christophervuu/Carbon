@@ -31,7 +31,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         mEmailField = findViewById(R.id.EditTextSendForgotEmail);
 
         findViewById(R.id.ButtonSendForgotEmail).setOnClickListener(this);
-        findViewById(R.id.SignUpAccountImageViewBack).setOnClickListener(this);
+        findViewById(R.id.ForgotPasswordImageViewBack).setOnClickListener(this);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         int i = v.getId();
         if (i == R.id.ButtonSendForgotEmail) {
             sendPasswordReset(mEmailField.getText().toString());
-        } else if (i == R.id.SignUpAccountImageViewBack) {
+        } else if (i == R.id.ForgotPasswordImageViewBack) {
             this.finish();
         }
     }

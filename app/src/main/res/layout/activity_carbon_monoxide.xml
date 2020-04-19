@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_marginTop="20dp"
+android:layout_marginLeft="20dp"
+android:layout_marginRight="20dp"
+tools:context=".Activities.CarbonMonoxideActivity">
+
+    <RelativeLayout
+        android:id="@+id/CarbonMonoxideRelativeLayoutOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/CarbonMonoxideImageViewBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewDeviceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Device Id: 465619834"/>
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewUpdatedOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CarbonMonoxideTextViewDeviceId"
+            android:layout_alignParentEnd="true"
+            android:text="12/10/2020 21:12"/>
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewBattery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/CarbonMonoxideTextViewUpdatedOn"
+            android:layout_alignParentEnd="true"
+            android:text="Battery: 86%"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/CarbonMonoxideRelativeLayoutTwo"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/CarbonMonoxideRelativeLayoutOne">
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewDeviceReadings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="87"
+            android:textSize="150dp" />
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewDeviceReadingsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="30dp"
+            android:layout_toEndOf="@id/CarbonMonoxideTextViewDeviceReadings"
+            android:text="PPM"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/CarbonMonoxideRelativeLayoutThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CarbonMonoxideRelativeLayoutTwo"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/CarbonMonoxideTextViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="30dp"
+            android:text="Living Room"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.carbon.Activities.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carbon.Activities.MainActivity;
+import com.example.carbon.Activities.CarbonMonoxideActivity;
 import com.example.carbon.Adapters.DeviceAdapter;
 import com.example.carbon.HttpRequest.JsonPlaceHolderApi;
 import com.example.carbon.Model.DeviceResponse;
 import com.example.carbon.Model.Info;
 import com.example.carbon.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -53,7 +55,6 @@ public class DashboardFragment extends Fragment implements DeviceAdapter.OnNoteL
         call.enqueue(new Callback<DeviceResponse>() {
             @Override
             public void onResponse(Call<DeviceResponse> call, Response<DeviceResponse> response) {
-
                 generateDeviceList(response.body().getInfo(), view);
             }
 
@@ -78,7 +79,7 @@ public class DashboardFragment extends Fragment implements DeviceAdapter.OnNoteL
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), MainActivity.class);
+        Intent intent = new Intent(getActivity(), CarbonMonoxideActivity.class);
         startActivity(intent);
     }
 }

@@ -7,19 +7,29 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    tools:context=".Activities.AddUserEmailActivity">
+    android:layout_marginTop="20dp"
+    tools:context=".Activities.AddUserActivity">
+
+    <ImageView
+        android:id="@+id/AddUserImageViewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"/>
 
     <TextView
         android:id="@+id/AddUserEmailTextViewText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter the email address you wish to add to your account."
+        android:layout_marginTop="100dp"
+        android:textSize="25dp"
         />
 
     <EditText
         android:id="@+id/AddUserEmailEditTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:layout_below="@+id/AddUserEmailTextViewText"
         android:hint="Email"/>
 

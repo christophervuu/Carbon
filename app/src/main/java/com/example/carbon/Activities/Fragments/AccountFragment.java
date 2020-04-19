@@ -2,24 +2,35 @@ package com.example.carbon.Activities.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.carbon.Activities.AddUserEmailActivity;
-import com.example.carbon.HttpRequest.JsonPlaceHolderApi;
+import com.example.carbon.Activities.AddUserActivity;
 import com.example.carbon.HttpRequest.UserApi;
-import com.example.carbon.Model.ModelGetAccountUsers;
+import com.example.carbon.Model.UserList;
+import com.example.carbon.Model.UserRecords;
 import com.example.carbon.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,12 +45,14 @@ public class AccountFragment extends Fragment  {
     // Declare Firebase
     private FirebaseAuth mAuth;
 
+    TextView mFragmentAccountUserList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        final Intent intent = new Intent(getActivity(), AddUserEmailActivity.class);
+        final Intent intent = new Intent(getActivity(), AddUserActivity.class);
         Button mButton = view.findViewById(R.id.FragmentAccountButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -49,20 +62,90 @@ public class AccountFragment extends Fragment  {
 
         mAuth = FirebaseAuth.getInstance();
 
+        mFragmentAccountUserList = view.findViewById(R.id.FragmentAccountUserList);
+/*
+        try {
+
+        OkHttpClient client = new OkHttpClient();
+
+        String JSON = "{\"FirebaseId\": \"WmrzPH8zlGhGisXHZhK18MKsQVD2\"}";
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), JSON);
+
+        Request request = new Request.Builder()
+                .url("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Prod/app/user/getaccountusers")
+                .post(body)
+                .build();
+
+
+        String jsonData = "";
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            //your codes here
+
+            try (Response response = client.newCall(request).execute()) {
+                jsonData = response.body().string();
+            } catch (Exception e) {
+                Log.w("Failed:  ", e);
+            }
+        }
+
+            JSONObject Jobject = new JSONObject(jsonData);
+            JSONArray Jarray = Jobject.getJSONArray("body");
+
+            //define the strings that will temporary store the data
+            String fname,lname;
+
+            //get the length of the json array
+            int limit = Jarray.length();
+
+            //datastore array of size limit
+            String dataStore[] = new String[limit];
+
+            for (int i = 0; i < Jarray.length(); i++) {
+                JSONObject object     = Jarray.getJSONObject(i);
+
+                fname = object.getString("firstName");
+                lname = object.getString("lastName");
+
+                //store the data into the array
+                dataStore[i] = fname + " " + lname;
+            }
+
+            String text = "";
+
+            for (String content : dataStore ) {
+                text += content + "\n";
+            }
+
+            mFragmentAccountUserList.setText(text);
+
+        } catch (Exception e) {
+            Log.d("ARRAY CONTENT", e.toString());
+        }
+*/
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Prod/app/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-         userApi = retrofit.create(UserApi.class);
+        UserApi userApi = retrofit.create(UserApi.class);
 
-        ModelGetAccountUsers modelGetAccountUsers = new ModelGetAccountUsers(mAuth.getCurrentUser().getUid());
-        Call<ModelGetAccountUsers> call = userApi.getAccountUsers(modelGetAccountUsers);
+        UserRecords userRecords = new UserRecords(mAuth.getCurrentUser().getUid());
+        Call<UserRecords> call = userApi.getaccountusers(userRecords);
 
-        call.enqueue(new Callback<ModelGetAccountUsers>() {
+        call.enqueue(new Callback<UserRecords>() {
             @Override
-            public void onResponse(Call<ModelGetAccountUsers> call, Response<ModelGetAccountUsers> response) {
-                Log.w("2.0 getFeed > Full json res wrapped in gson => ", new Gson().toJson(response));
+            public void onResponse(Call<UserRecords> call, Response<UserRecords> response) {
+
+
+                Log.w("2.0 getFeed > Full json res wrapped in gson => ", response.body().getBody().get(0).getFirstName());
 
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "-----isFalse----");
@@ -72,12 +155,13 @@ public class AccountFragment extends Fragment  {
             }
 
             @Override
-            public void onFailure(Call<ModelGetAccountUsers> call, Throwable t) {
+            public void onFailure(Call<UserRecords> call, Throwable t) {
                 Log.d(TAG, "----onFailure------");
                 Log.e(TAG, t.getMessage());
                 Log.d(TAG, "----onFailure------");
             }
         });
+
 
         return view;
     }

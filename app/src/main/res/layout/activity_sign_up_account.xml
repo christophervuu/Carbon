@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     tools:context=".Activities.SignUpAccount">
@@ -21,13 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SignUpAccountImageViewBack"
-        android:text="Enter your account information:"/>
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:text="Enter your account information."/>
 
     <EditText
         android:id="@+id/SignUpAccountEditTextFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SignUpAccountTextViewText1"
+        android:layout_marginTop="50dp"
         android:hint="First Name"/>
 
     <EditText

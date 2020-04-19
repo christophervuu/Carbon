@@ -32,7 +32,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
     @Override
     public void onBindViewHolder(final DeviceViewHolder holder, int position) {
-        holder.mDeviceId.setText(dataList.get(position).getDeviceId());
+        //holder.mDeviceId.setText(dataList.get(position).getDeviceId());
         holder.mDeviceType.setText(dataList.get(position).getDeviceType());
         holder.mDeviceValue.setText(dataList.get(position).getDeviceValue());
     }
@@ -52,11 +52,10 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         DeviceViewHolder(View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            mDeviceId = itemView.findViewById(R.id.TextViewDeviceId);
+            //mDeviceId = itemView.findViewById(R.id.TextViewDeviceId);
             mDeviceType = itemView.findViewById(R.id.TextViewDeviceType);
             mDeviceValue = itemView.findViewById(R.id.TextViewUpdatedOn);
             //cardView = itemView.findViewById(R.id.CardViewRowDevice);
-            mImage = itemView.findViewById(R.id.ImageViewImage);
             this.onNoteListener = onNoteListener;
 
             itemView.setOnClickListener(this);

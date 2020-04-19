@@ -24,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AddUserEmailActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddUserActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "AddUserEmail";
 
     // Declare Firebase
