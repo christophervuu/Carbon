@@ -4,11 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UserList {
-    @SerializedName("FirstName")
+    @SerializedName("firstName")
     @Expose
     private String FirstName;
 
-    @SerializedName("LastName")
+    @SerializedName("lastName")
     @Expose
     private String LastName;
 

@@ -2,7 +2,6 @@ package com.example.carbon.Activities.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +19,11 @@ import com.example.carbon.Model.UserList;
 import com.example.carbon.Model.UserRecords;
 import com.example.carbon.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,11 +121,19 @@ public class AccountFragment extends Fragment  {
         } catch (Exception e) {
             Log.d("ARRAY CONTENT", e.toString());
         }
+
+
 */
+
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        okHttpClientBuilder.addInterceptor(logging);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://rnozi7c90e.execute-api.us-east-2.amazonaws.com/Prod/app/user/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClientBuilder.build())
                 .build();
 
         UserApi userApi = retrofit.create(UserApi.class);
@@ -145,7 +146,15 @@ public class AccountFragment extends Fragment  {
             public void onResponse(Call<UserRecords> call, Response<UserRecords> response) {
 
 
-                Log.w("2.0 getFeed > Full json res wrapped in gson => ", response.body().getBody().get(0).getFirstName());
+                ArrayList<UserList> list = response.body().getBody();
+
+                String text = "";
+
+                for (int i = 0; i < list.size(); i++) {
+                    text += list.get(i).getFirstName() + " " + list.get(i).getLastName() + "\n";
+                }
+
+                mFragmentAccountUserList.setText(text);
 
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "-----isFalse----");

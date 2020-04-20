@@ -8,17 +8,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.carbon.Model.Info;
+import com.example.carbon.Model.DeviceList;
 import com.example.carbon.R;
 
 import java.util.ArrayList;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
 
-    private ArrayList<Info> dataList;
+    private ArrayList<DeviceList> dataList;
     private OnNoteListener mOnNoteListener;
 
-    public DeviceAdapter(OnNoteListener onNoteListener, ArrayList<Info> dataList) {
+    public DeviceAdapter(OnNoteListener onNoteListener, ArrayList<DeviceList> dataList) {
         this.mOnNoteListener = onNoteListener;
         this.dataList = dataList;
     }
@@ -33,8 +33,14 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
     @Override
     public void onBindViewHolder(final DeviceViewHolder holder, int position) {
         //holder.mDeviceId.setText(dataList.get(position).getDeviceId());
-        holder.mDeviceType.setText(dataList.get(position).getDeviceType());
-        holder.mDeviceValue.setText(dataList.get(position).getDeviceValue());
+
+        if (dataList.get(position).getType().equals("CO")) {
+            holder.mDeviceType.setText("Carbon Monoxide");
+        } else {
+            holder.mDeviceType.setText(dataList.get(position).getType());
+        }
+
+        holder.mDeviceValue.setText(dataList.get(position).getValueCO());
     }
 
     @Override
@@ -63,11 +69,11 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
         @Override
         public void onClick(View v) {
-            onNoteListener.onNoteClick(getAdapterPosition());
+            onNoteListener.onNoteClick(getAdapterPosition(), dataList);
         }
     }
 
     public interface OnNoteListener {
-        void onNoteClick(int position);
+        void onNoteClick(int position, ArrayList<DeviceList> dataList);
     }
 }

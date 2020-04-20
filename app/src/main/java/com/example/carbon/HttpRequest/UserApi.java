@@ -1,15 +1,15 @@
 package com.example.carbon.HttpRequest;
 
+import com.example.carbon.Model.DeviceProfile;
+import com.example.carbon.Model.DeviceRecords;
 import com.example.carbon.Model.ModelAddUser;
 import com.example.carbon.Model.ModelCreateUserAccount;
 import com.example.carbon.Model.ModelResponseUser;
 import com.example.carbon.Model.ModelUpdateUser;
-import com.example.carbon.Model.UserList;
 import com.example.carbon.Model.UserRecords;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface UserApi {
@@ -28,4 +28,10 @@ public interface UserApi {
 
     @POST("getaccountusers")
     Call<UserRecords> getaccountusers(@Body UserRecords userRecords);
+
+    @POST("list")
+    Call<DeviceRecords> getDeviceList(@Body DeviceRecords deviceRecords);
+
+    @POST("profile")
+    Call<DeviceProfile> getDeviceProfile(@Body DeviceProfile deviceProfile);
 }
