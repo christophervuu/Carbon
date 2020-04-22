@@ -21,7 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CarbonMonoxideActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView mCarbonMonoxideTextViewDeviceId;
+    TextView mCarbonMonoxideTextViewDeviceId, mCarbonMonoxideTextViewUpdatedOn, mCarbonMonoxideTextViewBattery;
+    TextView mCarbonMonoxideTextViewDeviceReadings, mCarbonMonoxideTextViewName, mCarbonMonoxideTextViewLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,11 @@ public class CarbonMonoxideActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_carbon_monoxide);
 
         mCarbonMonoxideTextViewDeviceId = findViewById(R.id.CarbonMonoxideTextViewDeviceId);
+        mCarbonMonoxideTextViewUpdatedOn = findViewById(R.id.CarbonMonoxideTextViewUpdatedOn);
+        mCarbonMonoxideTextViewBattery = findViewById(R.id.CarbonMonoxideTextViewBattery);
+        mCarbonMonoxideTextViewDeviceReadings = findViewById(R.id.CarbonMonoxideTextViewDeviceReadings);
+        mCarbonMonoxideTextViewName = findViewById(R.id.CarbonMonoxideTextViewName);
+        mCarbonMonoxideTextViewLabel = findViewById(R.id.CarbonMonoxideTextViewLabel);
 
         findViewById(R.id.CarbonMonoxideImageViewBack).setOnClickListener(this);
 
@@ -53,7 +59,28 @@ public class CarbonMonoxideActivity extends AppCompatActivity implements View.On
         call.enqueue(new Callback<DeviceProfile>() {
             @Override
             public void onResponse(Call<DeviceProfile> call, Response<DeviceProfile> response) {
-                Log.i("Response, DeviceId: ", response.body().getType());
+
+                String text;
+
+                text = "Device Id: " + response.body().getDevEUI();
+                mCarbonMonoxideTextViewDeviceId.setText(text);
+
+                mCarbonMonoxideTextViewUpdatedOn.setText(response.body().getUpdatedOn());
+
+                text = "Battery: " + response.body().getBattery() + "%";
+                mCarbonMonoxideTextViewBattery.setText(text);
+
+                mCarbonMonoxideTextViewDeviceReadings.setText(response.body().getValueCO());
+
+                if (response.body().getType().equals("CO")) {
+                    text = "Carbon Monoxide Sensor (PPM)";
+                } else {
+                    text = response.body().getType();
+                }
+
+                mCarbonMonoxideTextViewLabel.setText(text);
+
+                mCarbonMonoxideTextViewName.setText(response.body().getName());
             }
 
             @Override

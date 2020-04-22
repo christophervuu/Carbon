@@ -4,4 +4,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="facebook_app_id">181491472894561</string>
+    <string name="fb_login_protocol_scheme">fb181491472894561</string>
 </resources>

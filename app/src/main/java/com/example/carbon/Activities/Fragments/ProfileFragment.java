@@ -100,9 +100,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<ModelResponseUser> call, Throwable t) {
-                Log.d(TAG, "----onFailure------");
-                Log.e(TAG, t.getMessage());
-                Log.d(TAG, "----onFailure------");
+
             }
         });
 

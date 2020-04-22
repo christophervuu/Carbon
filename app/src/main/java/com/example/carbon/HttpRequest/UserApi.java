@@ -2,6 +2,7 @@ package com.example.carbon.HttpRequest;
 
 import com.example.carbon.Model.DeviceProfile;
 import com.example.carbon.Model.DeviceRecords;
+import com.example.carbon.Model.ModelAddDevice;
 import com.example.carbon.Model.ModelAddUser;
 import com.example.carbon.Model.ModelCreateUserAccount;
 import com.example.carbon.Model.ModelResponseUser;
@@ -34,4 +35,7 @@ public interface UserApi {
 
     @POST("profile")
     Call<DeviceProfile> getDeviceProfile(@Body DeviceProfile deviceProfile);
+
+    @POST("adddevices")
+    Call<ModelAddDevice> addDevice(@Body ModelAddDevice modelAddDevice);
 }

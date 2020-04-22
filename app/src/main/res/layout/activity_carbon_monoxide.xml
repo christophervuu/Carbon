@@ -25,24 +25,21 @@ tools:context=".Activities.CarbonMonoxideActivity">
             android:id="@+id/CarbonMonoxideTextViewDeviceId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="Device Id: 465619834"/>
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/CarbonMonoxideTextViewUpdatedOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/CarbonMonoxideTextViewDeviceId"
-            android:layout_alignParentEnd="true"
-            android:text="12/10/2020 21:12"/>
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/CarbonMonoxideTextViewBattery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/CarbonMonoxideTextViewUpdatedOn"
-            android:layout_alignParentEnd="true"
-            android:text="Battery: 86%"/>
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
@@ -58,19 +55,7 @@ tools:context=".Activities.CarbonMonoxideActivity">
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="87"
             android:textSize="150dp" />
-
-        <TextView
-            android:id="@+id/CarbonMonoxideTextViewDeviceReadingsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginBottom="30dp"
-            android:layout_toEndOf="@id/CarbonMonoxideTextViewDeviceReadings"
-            android:text="PPM"
-            android:textSize="30dp" />
 
     </RelativeLayout>
 
@@ -83,12 +68,17 @@ tools:context=".Activities.CarbonMonoxideActivity">
         android:layout_marginBottom="20dp">
 
         <TextView
+            android:id="@+id/CarbonMonoxideTextViewLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
             android:id="@+id/CarbonMonoxideTextViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:textSize="30dp"
-            android:text="Living Room"/>
+            android:layout_below="@+id/CarbonMonoxideTextViewLabel"
+            android:textSize="30dp"/>
 
     </RelativeLayout>
 

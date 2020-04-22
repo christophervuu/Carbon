@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/ForgotPasswordActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    tools:context="com.example.carbon.Activities.ForgotPassword">
+
+    <ImageView
+        android:id="@+id/FragmentAddDeviceImageViewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"/>
+
+    <TextView
+        android:id="@+id/FragmentAddDeviceTextViewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter the DevEUI and name of the device."
+        android:layout_marginTop="100dp"
+        android:textSize="25dp"/>
+
+    <EditText
+        android:id="@+id/FragmentAddDeviceEditTextDevEUI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentAddDeviceTextViewText"
+        android:layout_marginTop="100dp"
+        android:hint="DevEUI"/>
+
+
+    <EditText
+        android:id="@+id/FragmentAddDeviceEditTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentAddDeviceEditTextDevEUI"
+        android:layout_marginTop="20dp"
+        android:hint="Name"/>
+
+    <Button
+        android:id="@+id/FragmentAddDeviceButtonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FragmentAddDeviceEditTextName"
+        android:text="Add Device" />
+
+</RelativeLayout>

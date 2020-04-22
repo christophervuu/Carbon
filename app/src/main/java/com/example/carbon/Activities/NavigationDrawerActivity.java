@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.carbon.Activities.Fragments.AddDeviceFragment;
 import com.example.carbon.Activities.Fragments.ProfileFragment;
 import com.example.carbon.Activities.Fragments.DashboardFragment;
 import com.example.carbon.Activities.Fragments.AccountFragment;
@@ -60,6 +61,9 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
 
+            case R.id.nav_add_device:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddDeviceFragment()).commit();
+                break;
 
             case R.id.nav_sign_out:
                 signOut();
